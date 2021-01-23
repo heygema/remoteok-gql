@@ -58,16 +58,27 @@ const resolvers = {
         let tagsAvoid = datum.tags.some((tag) => {
           return (tags.NOT || []).includes(tag);
         });
+        let tagsCondition = true;
+        let idsCondition = true;
+
+        if (
+          (tags.IN && tags.IN.length > 0) ||
+          (tags.NOT && tags.NOT.length > 0)
+        ) {
+          tagsCondition = tagExist && !tagsAvoid;
+        }
+
+        if ((id.IN && id.IN.length > 0) || (id.NOT && id.NOT.length > 0)) {
+          idsCondition = idExist && !idAvoid;
+        }
 
         return (
           datum.company.includes(company) &&
           datum.position.includes(position) &&
           datum.description.includes(description) &&
           datum.location.includes(location) &&
-          tagExist &&
-          !tagsAvoid &&
-          idExist &&
-          !idAvoid
+          tagsCondition &&
+          idsCondition
         );
       });
       return filtered;
