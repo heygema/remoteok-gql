@@ -1,10 +1,10 @@
 module.exports = {
   async rewrites() {
     return [
-      {
-        source: '/',
-        destination: '/api',
-      },
-    ]
-  },
-}
+      // {
+      // source: '/',
+      // destination: '/api',
+      // },
+    ];
+  }
+};

@@ -138,7 +138,7 @@ const apolloServer = new ApolloServer({
   resolvers
 });
 
-const handler = apolloServer.createHandler({ path: "/" });
+const handler = apolloServer.createHandler({ path: "/api" });
 
 export const config = {
   api: {
