@@ -133,6 +133,7 @@ const typeDefs = gql`
 `;
 
 const apolloServer = new ApolloServer({
+  playground: true,
   typeDefs,
   resolvers
 });
