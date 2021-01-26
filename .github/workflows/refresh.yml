@@ -1,0 +1,20 @@
+name: Refresh Feed
+
+on:
+  schedule:
+    - cron: "* 1 * * *" # every hour 
+
+jobs:
+  refresh-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch API Data 📦
+        uses: JamesIves/fetch-api-data-action@releases/v1
+        with:
+          # The token endpoint is requested first. This retrieves the access token for the other endpoint.
+          # Once the token endpoint has fetched then this endpoint is requested.
+          ENDPOINT: https://remoteok.io/api
+          # The bearer token here is returned from the TOKEN_ENDPOINT call. The returned data looks like so: {data: {access_token: '123'}}, meaning it can be accessed using the triple bracket syntax.
+          CONFIGURATION: '{ "method": "GET" }'
+          SAVE_LOCATION: public
+          SAVE_NAME: remoteok
